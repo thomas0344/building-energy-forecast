@@ -1,0 +1,9 @@
+[
+  {"name":"CCTV cameras","group":"security","count":16,"watts":12,"schedule":"always"},
+  {"name":"Security desk and recorder","group":"security","count":1,"watts":190,"schedule":"always"},
+  {"name":"Company board lights","group":"security","count":4,"watts":45,"schedule":"night"},
+  {"name":"Office lights","group":"office","count":80,"watts":22,"schedule":"open"},
+  {"name":"Computers","group":"office","count":45,"watts":130,"schedule":"occupied"},
+  {"name":"Workshop machines","group":"machines","count":4,"watts":1800,"schedule":"production"},
+  {"name":"Air conditioners","group":"cooling","count":6,"watts":1500,"schedule":"cooling"}
+]

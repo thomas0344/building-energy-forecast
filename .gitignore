@@ -1,0 +1,9 @@
+App_Data/
+bin/
+obj/
+__pycache__/
+*.pyc
+.DS_Store
+__MACOSX/
+.env
+.vs/
