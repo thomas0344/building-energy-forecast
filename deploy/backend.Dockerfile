@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/dotnet/sdk:11.0 AS build
+WORKDIR /src
+COPY backend/ backend/
+COPY database/schema.sql database/sample.sqlite database/
+RUN dotnet publish backend/Energy.csproj -c Release -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:11.0
+WORKDIR /app
+COPY --from=build /app .
+ENV ASPNETCORE_URLS=http://+:5080 ENERGY_STATE_DIR=/state
+ENTRYPOINT ["dotnet","Energy.dll"]

@@ -1,0 +1,6 @@
+.git
+.env
+**/App_Data
+**/obj
+**/bin
+**/__pycache__

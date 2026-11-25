@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: deploy/backend.Dockerfile
+    environment:
+      FrontendOrigin: https://${SITE_HOST:?Set SITE_HOST to the public hostname}
+    volumes:
+      - energy-state:/state
+    restart: unless-stopped
+  model:
+    build:
+      context: .
+      dockerfile: deploy/model.Dockerfile
+    network_mode: service:backend
+    depends_on:
+      - backend
+    restart: unless-stopped
+  web:
+    image: caddy:2-alpine
+    environment:
+      SITE_HOST: ${SITE_HOST}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./frontend:/srv:ro
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+    depends_on:
+      - backend
+    restart: unless-stopped
+volumes:
+  energy-state:
+  certificates:

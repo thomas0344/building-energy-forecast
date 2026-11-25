@@ -1,5 +1,6 @@
 // The browser talks only to ASP.NET Core. Model and database calls stay in C#.
-const apiOrigin = 'http://localhost:5080';
+const apiOrigin = location.hostname === 'localhost' && location.port === '5173'
+  ? 'http://localhost:5080' : location.origin;
 function apiFetch(path, options = {}) {
   return fetch(new URL(path, apiOrigin), {...options, credentials:'include', cache:'no-store'});
 }
